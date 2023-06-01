@@ -1,9 +1,18 @@
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GrillaCards from "./GrillaCards";
 
 const Formulario = () => {
+  let objetosDelLocalStorage = 
+  JSON.parse(localStorage.getItem("grillaCards"))||[{}];
+  const [arrayObjetos, setArrayObjetos] = useState([objetosDelLocalStorage]);
+
+useEffect(()=>{
+  localStorage.setItem("grillaCards", JSON.stringify(arrayObjetos))
+},[arrayObjetos])
+
+
   const {
     register,
     formState: { errors },
@@ -11,7 +20,7 @@ const Formulario = () => {
     handleSubmit,
   } = useForm();
 
-  const [arrayObjetos, setArrayObjetos] = useState([{}]);
+ 
 
   const onSubmit = (data) => {
     setArrayObjetos([...arrayObjetos, data]);
@@ -103,10 +112,10 @@ const Formulario = () => {
         {errors.mascota?.type === "required" && (
           <p className="error">El campo nombre de mascota es requerido</p>
         )}
-        {errors.hora?.type === "pattern" && (
-          <p className="error">El formato del hora es incorrecto</p>
+        {errors.hora?.type === "required" && (
+          <p className="error">El campo hora es requerido</p>
         )}
-        {errors.fecha && (
+        {errors.fecha?.type === "required" && (
           <p className="error">El fecha debe estar entre 1 y 80.000.000</p>
         )}
       </Form>
