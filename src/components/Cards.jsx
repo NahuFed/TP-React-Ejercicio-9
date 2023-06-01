@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, Col, InputGroup} from 'react-bootstrap';
+import { Card, Button, Col} from 'react-bootstrap';
 
 const Cards = ({objeto}) => {
     return (

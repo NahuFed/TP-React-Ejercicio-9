@@ -4,9 +4,8 @@ import { useEffect, useState } from "react";
 import GrillaCards from "./GrillaCards";
 
 const Formulario = () => {
-  let objetosDelLocalStorage = 
-  JSON.parse(localStorage.getItem("grillaCards"))||[{}];
-  const [arrayObjetos, setArrayObjetos] = useState([objetosDelLocalStorage]);
+  let objetosDelLocalStorage = JSON.parse(localStorage.getItem("grillaCards"))||[];
+  const [arrayObjetos, setArrayObjetos] = useState(objetosDelLocalStorage);
 
 useEffect(()=>{
   localStorage.setItem("grillaCards", JSON.stringify(arrayObjetos))
@@ -23,6 +22,7 @@ useEffect(()=>{
  
 
   const onSubmit = (data) => {
+    // data.preventDefault()    
     setArrayObjetos([...arrayObjetos, data]);
     console.log(arrayObjetos);
   };
