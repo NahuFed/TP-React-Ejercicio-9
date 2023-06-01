@@ -11,7 +11,10 @@ useEffect(()=>{
   localStorage.setItem("grillaCards", JSON.stringify(arrayObjetos))
 },[arrayObjetos])
 
-
+const borrarObjeto = (indiceObjetoABorrar) =>{
+  let copiaArrayObjetos = arrayObjetos.filter((objeto, indice)=> indice != indiceObjetoABorrar)
+  setArrayObjetos(copiaArrayObjetos)
+}
   const {
     register,
     formState: { errors },
@@ -119,7 +122,7 @@ useEffect(()=>{
           <p className="error">El fecha debe estar entre 1 y 80.000.000</p>
         )}
       </Form>
-      <GrillaCards arrayObjetos={arrayObjetos}/>
+      <GrillaCards arrayObjetos={arrayObjetos} borrarObjeto={borrarObjeto}/>
     </>
     
   );

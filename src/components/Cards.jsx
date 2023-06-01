@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Button, Col} from 'react-bootstrap';
 
-const Cards = ({objeto}) => {
+const Cards = ({objeto,indice,borrarObjeto}) => {
     return (
 <Col xs={12} md={6} lg={4} className='mb-4' >
         <Card>
@@ -18,7 +18,7 @@ const Cards = ({objeto}) => {
             
           </Card.Body>
           <Card.Footer className="d-flex justify-content-end">
-            <Button variant="danger">
+            <Button variant="danger" onClick={()=> borrarObjeto(indice)}>
               Borrar
             </Button>
           </Card.Footer>
